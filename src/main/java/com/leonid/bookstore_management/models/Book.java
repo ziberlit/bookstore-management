@@ -1,10 +1,9 @@
 package com.leonid.bookstore_management.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Table(name = "books")
@@ -15,4 +14,6 @@ public class Book {
     private Long id;
     private String title;
     private String isbn;
+    @ManyToMany
+    private List<Author> authors;
 }

@@ -1,9 +1,6 @@
 package com.leonid.bookstore_management.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -14,4 +11,6 @@ public class Author {
     private Long id;
     private String name;
     private String biography;
+    @ManyToOne
+    private Publisher publisher;
 }
