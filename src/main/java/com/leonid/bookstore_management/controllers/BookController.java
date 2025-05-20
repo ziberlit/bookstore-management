@@ -3,6 +3,7 @@ package com.leonid.bookstore_management.controllers;
 import com.leonid.bookstore_management.models.Book;
 import com.leonid.bookstore_management.repositories.BookRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ public class BookController {
     private final BookRepository bookRepository;
 
     @PostMapping
+    @CacheEvict(value = "books", allEntries = true) // Invalidate the entire books cache
     public ResponseEntity<Book> addBook(@RequestBody Book book) {
         Book savedBook = bookRepository.save(book);
         return ResponseEntity.ok(savedBook);
@@ -33,6 +35,7 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
+    @CacheEvict(value = "books", allEntries = true) // Invalidate the entire books cache
     public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody Book book) {
         return bookRepository.findById(id)
                 .map(existingBook -> {
