@@ -33,4 +33,4 @@ Contributions are welcome! Please open issues or submit pull requests.
 
 ## License
 
-MIT
+This project is licensed under the [MIT License](LICENSE).
